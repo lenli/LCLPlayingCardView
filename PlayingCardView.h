@@ -12,4 +12,10 @@
 @property (strong, nonatomic) NSString *suit;
 @property (strong, nonatomic) NSString *rank;
 
+// Visual Card Properties
+@property (weak, nonatomic) NSString *fontFamily;
+@property (weak, nonatomic) NSInteger *suitFontSize;
+@property (weak, nonatomic) NSInteger *rankFontSize;
+@property (weak, nonatomic) UIColor *labelColor;
+
 @end
