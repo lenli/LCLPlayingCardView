@@ -10,43 +10,31 @@
 
 @implementation PlayingCardView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame withRank:(NSString *)rank withSuit:(NSString *)suit isVisible:(BOOL)isVisible
 {
     self = [super initWithFrame:frame];
     if (self) {
-
-        // Create Rounded Borders on Card
-        self.layer.cornerRadius = 5.0;
-        self.layer.masksToBounds = YES;
-        self.layer.borderColor = [UIColor blackColor].CGColor;
-        self.layer.borderWidth = 1;
-        self.backgroundColor = [UIColor whiteColor];
-
-        // Define Card Label properties
-        self.fontFamily = @"TimesNewRomanPS-BoldMT";
-        self.rankFontSize = 12;
-        self.suitFontSize = 16;
-        self.labelColor = [UIColor blackColor];
-
-        // Customize Label Alignment on Card
-        NSInteger cardHeight = cardView.bounds.size.height;
-        NSInteger cardWidth = cardView.bounds.size.width;
-        NSInteger cardLabelWidth = 20;
-        NSInteger cardLabelHeight = 20;
-
-        NSInteger xOffset = 0;
-        NSInteger yOffset = 0;
-        NSInteger yPadding = 10;
+        [self drawCard];
         
-        CGRect topRankFrame = CGRectMake(xOffset, yOffset, cardLabelWidth, cardLabelHeight);
-        CGRect topSuitFrame = CGRectMake(xOffset, yOffset + yPadding, cardLabelWidth, cardLabelHeight);
-        CGRect bottomRankFrame = CGRectMake(cardWidth-cardLabelWidth-xOffset, cardHeight-yOffset-cardLabelHeight, cardLabelWidth, cardLabelHeight);
-        CGRect bottomSuitFrame = CGRectMake(cardWidth-cardLabelWidth-xOffset, cardHeight-yOffset-yPadding-cardLabelHeight, cardLabelWidth, cardLabelHeight);
+        // Define Card Label properties
+        _fontFamily = @"TimesNewRomanPS-BoldMT";
+        _rankFontSize = 12;
+        _suitFontSize = 16;
+        _labelColor = [UIColor blackColor];
+        _suit = suit;
+        _rank = rank;
+        _isVisible = isVisible;
+        
+        if (isVisible) {
+            [self updateSuitAndRank];
+        } else {
+            UIGraphicsBeginImageContext(self.frame.size);
+            [[UIImage imageNamed:@"cardBack.jpg"] drawInRect:self.bounds];
+            UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            self.backgroundColor = [UIColor colorWithPatternImage:image];
+        }
 
-        [self createLabelForCardWithFrame:topRankFrame withText:self.rank withFontSize:cardRankFontSize withTransformation:nil];
-        [self createLabelForCardWithFrame:topSuitFrame withText:self.suit withFontSize:cardSuitFontSize withTransformation:nil];
-        [self createLabelForCardWithFrame:bottomRankFrame withText:self.rank withFontSize:cardRankFontSize withTransformation:M_PI];
-        [self createLabelForCardWithFrame:bottomSuitFrame withText:self.suit withFontSize:cardSuitFontSize withTransformation:M_PI];
 
     }
     return self;
@@ -59,19 +47,50 @@
     newLabel.textAlignment = NSTextAlignmentCenter;
     newLabel.textColor = self.labelColor;
     newLabel.font = [UIFont fontWithName:self.fontFamily size:fontSize];
-    if (angleAsRadians) {
+    if (angleAsRadians != 0) {
         [newLabel setTransform:CGAffineTransformMakeRotation(angleAsRadians)];
     }
     [self addSubview:newLabel];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)drawCard
 {
-    // Drawing code
+    // Create Rounded Borders on Card
+    self.layer.cornerRadius = 5.0;
+    self.layer.masksToBounds = YES;
+    self.layer.borderColor = [UIColor blackColor].CGColor;
+    self.layer.borderWidth = 1;
+    self.backgroundColor = [UIColor whiteColor];
 }
-*/
+
+- (void)updateSuitAndRank
+{
+    // Customize Label Alignment on Card
+    NSInteger cardHeight = self.bounds.size.height;
+    NSInteger cardWidth = self.bounds.size.width;
+    NSInteger cardLabelWidth = 20;
+    NSInteger cardLabelHeight = 20;
+    
+    NSInteger xOffset = 0;
+    NSInteger yOffset = 0;
+    NSInteger yPadding = 10;
+    
+    CGRect topRankFrame = CGRectMake(xOffset, yOffset, cardLabelWidth, cardLabelHeight);
+    CGRect topSuitFrame = CGRectMake(xOffset, yOffset + yPadding, cardLabelWidth, cardLabelHeight);
+    CGRect bottomRankFrame = CGRectMake(cardWidth-cardLabelWidth-xOffset, cardHeight-yOffset-cardLabelHeight, cardLabelWidth, cardLabelHeight);
+    CGRect bottomSuitFrame = CGRectMake(cardWidth-cardLabelWidth-xOffset, cardHeight-yOffset-yPadding-cardLabelHeight, cardLabelWidth, cardLabelHeight);
+    
+    [self createLabelForCardWithFrame:topRankFrame withText:self.rank withFontSize:self.rankFontSize withTransformation:0];
+    [self createLabelForCardWithFrame:topSuitFrame withText:self.suit withFontSize:self.suitFontSize withTransformation:0];
+    [self createLabelForCardWithFrame:bottomRankFrame withText:self.rank withFontSize:self.rankFontSize withTransformation:M_PI];
+    [self createLabelForCardWithFrame:bottomSuitFrame withText:self.suit withFontSize:self.suitFontSize withTransformation:M_PI];
+}
+
+- (void)revealCard
+{
+    self.isVisible = YES;
+    self.backgroundColor = [UIColor whiteColor];
+    [self updateSuitAndRank];
+}
 
 @end

@@ -14,8 +14,12 @@
 
 // Visual Card Properties
 @property (weak, nonatomic) NSString *fontFamily;
-@property (weak, nonatomic) NSInteger *suitFontSize;
-@property (weak, nonatomic) NSInteger *rankFontSize;
+@property (nonatomic) NSInteger suitFontSize;
+@property (nonatomic) NSInteger rankFontSize;
 @property (weak, nonatomic) UIColor *labelColor;
+@property (nonatomic) BOOL isVisible;
+
+- (id)initWithFrame:(CGRect)frame withRank:(NSString *)rank withSuit:(NSString *)suit isVisible:(BOOL)isVisible;
+- (void)revealCard;
 
 @end
