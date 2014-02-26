@@ -13,12 +13,12 @@
 @property (strong, nonatomic) NSString *rank;
 @property (strong, nonatomic) UIView *cardFrontSubview;
 @property (strong, nonatomic) UIView *cardBackSubview;
-
+ 
 // Visual Card Properties
 @property (weak, nonatomic) NSString *fontFamily;
+@property (weak, nonatomic) UIColor *labelColor;
 @property (nonatomic) NSInteger suitFontSize;
 @property (nonatomic) NSInteger rankFontSize;
-@property (weak, nonatomic) UIColor *labelColor;
 @property (nonatomic) BOOL isVisible;
 
 - (id)initWithFrame:(CGRect)frame withRank:(NSString *)rank withSuit:(NSString *)suit isVisible:(BOOL)isVisible;

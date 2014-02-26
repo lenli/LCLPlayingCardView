@@ -33,8 +33,17 @@
         self.layer.borderWidth = 1;
         self.backgroundColor = [UIColor whiteColor];
         
+
+        // Set up back of card subview
+        _cardBackSubview = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
+        UIGraphicsBeginImageContext(_cardBackSubview.frame.size);
+        [[UIImage imageNamed:@"cardBack.jpg"] drawInRect:self.bounds];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        _cardBackSubview.backgroundColor = [UIColor colorWithPatternImage:image];
+
         // Set up front of card subview
-        _cardFrontSubview = [[UIView alloc] initWithFrame:self.frame];
+        _cardFrontSubview = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
         NSInteger cardHeight = _cardFrontSubview.bounds.size.height;
         NSInteger cardWidth = _cardFrontSubview.bounds.size.width;
         NSInteger cardLabelWidth = 20;
@@ -48,19 +57,13 @@
         CGRect topSuitFrame = CGRectMake(xOffset, yOffset + yPadding, cardLabelWidth, cardLabelHeight);
         CGRect bottomRankFrame = CGRectMake(cardWidth-cardLabelWidth-xOffset, cardHeight-yOffset-cardLabelHeight, cardLabelWidth, cardLabelHeight);
         CGRect bottomSuitFrame = CGRectMake(cardWidth-cardLabelWidth-xOffset, cardHeight-yOffset-yPadding-cardLabelHeight, cardLabelWidth, cardLabelHeight);
+        CGRect cardCenterFrame = CGRectMake(_cardFrontSubview.center.x-cardLabelWidth, _cardFrontSubview.center.y-cardLabelHeight, cardLabelWidth*2, cardLabelHeight*2);
         
         [self createLabelForCardWithFrame:topRankFrame withText:self.rank withFontSize:self.rankFontSize withTransformation:0];
         [self createLabelForCardWithFrame:topSuitFrame withText:self.suit withFontSize:self.suitFontSize withTransformation:0];
         [self createLabelForCardWithFrame:bottomRankFrame withText:self.rank withFontSize:self.rankFontSize withTransformation:M_PI];
         [self createLabelForCardWithFrame:bottomSuitFrame withText:self.suit withFontSize:self.suitFontSize withTransformation:M_PI];
-        
-        // Set up back of card subview
-        _cardBackSubview = [[UIView alloc] initWithFrame:self.frame];
-        UIGraphicsBeginImageContext(_cardBackSubview.frame.size);
-        [[UIImage imageNamed:@"cardBack.jpg"] drawInRect:self.bounds];
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        _cardBackSubview.backgroundColor = [UIColor colorWithPatternImage:image];
+        [self createLabelForCardWithFrame:cardCenterFrame withText:self.suit withFontSize:self.suitFontSize*3 withTransformation:0];
         
         if (isVisible) {
             [self addSubview:_cardFrontSubview];
