@@ -22,8 +22,8 @@
         
         // Customize Card Label properties
         _fontFamily = @"TimesNewRomanPS-BoldMT";
-        _rankFontSize = 12;
-        _suitFontSize = 16;
+        _rankFontSize = 16;
+        _suitFontSize = 18;
         _labelColor = [UIColor blackColor];
 
         // Set up card
@@ -51,7 +51,7 @@
         
         NSInteger xOffset = 0;
         NSInteger yOffset = 0;
-        NSInteger yPadding = 10;
+        NSInteger yPadding = 14;
         
         CGRect topRankFrame = CGRectMake(xOffset, yOffset, cardLabelWidth, cardLabelHeight);
         CGRect topSuitFrame = CGRectMake(xOffset, yOffset + yPadding, cardLabelWidth, cardLabelHeight);
@@ -90,20 +90,25 @@
 
 - (void)flipCard
 {
-    if (!self.isVisible) {
+    if (self.isVisible) {
+        self.isVisible = NO;
         [self addSubview:self.cardBackSubview];
-        [UIView transitionFromView:self.cardBackSubview
-                            toView:self.cardFrontSubview
+        [UIView transitionFromView:self.cardFrontSubview
+                            toView:self.cardBackSubview
                           duration:0.7
                            options:UIViewAnimationOptionTransitionFlipFromLeft
                         completion:NULL];
+
+        [self.cardFrontSubview removeFromSuperview];
     } else {
+        self.isVisible = YES;
         [self addSubview:self.cardFrontSubview];
         [UIView transitionFromView:self.cardBackSubview
                             toView:self.cardFrontSubview
                           duration:0.7
                            options:UIViewAnimationOptionTransitionFlipFromLeft
                         completion:NULL];
+        [self.cardBackSubview removeFromSuperview];
     }
 }
 @end
