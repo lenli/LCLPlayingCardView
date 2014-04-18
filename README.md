@@ -3,13 +3,15 @@ PlayingCardView
 
 This is an implementation of a playing card as a UIView. 
 
+![image](LCLPlayingCardViewScreenshot.png)
+
 Features:
 - Lightweight:  No images for the cards -- 100% code.
 - Flexible: Since it’s code, you can tweak anything about the cards to fit your needs.
 - Realistic Feel:  The included customizations make the cards feel more real
 
 
-Getting Started
+##Getting Started
 ===============
 ###Installation with CocoaPods
 
@@ -27,8 +29,7 @@ pod "LCLPlayingCardView", "~> 1.0"
 ```
 
 
-Usage
-===============
+##Usage
 ###Example Usage
 ```ios
 NSInteger cardWidth = 80;
@@ -45,13 +46,10 @@ LCLPlayingCardView *card = [[PlayingCardView alloc] initWithFrame:cardRect withR
 ```
 
 
-License
-===============
+##License
 
 
-Change Log
-===============
+##Change Log
 
 
-Future Improvements
-===============
+##Future Improvements
