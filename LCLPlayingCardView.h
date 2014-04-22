@@ -6,14 +6,20 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define degreesToRadian(x) (M_PI * (x) / 180.0)
+
 extern NSString *const SUIT_FONT_FAMILY;
 extern NSString *const RANK_FONT_FAMILY;
 extern NSInteger const RANK_FONT_SIZE;
 extern NSInteger const SUIT_FONT_SIZE;
 extern NSInteger const RED_COLOR;
 extern NSInteger const CARD_COLOR;
+extern NSInteger const CARD_WIDTH;
+extern NSInteger const CARD_HEIGHT;
 
-@interface LCLPlayingCardView : UIView
+@interface PlayingCardView : UIView
 
 // Card Properties
 @property (strong, nonatomic) NSString *suit;
@@ -31,7 +37,14 @@ extern NSInteger const CARD_COLOR;
 @property (nonatomic) BOOL isVisible;
 
 // Card Methods
-- (id)initWithFrame:(CGRect)frame withRank:(NSString *)rank withSuit:(NSString *)suit isVisible:(BOOL)isVisible;
+- (instancetype)initWithPoint:(CGPoint)point
+                     withRank:(NSString *)rank
+                     withSuit:(NSString *)suit
+                    isVisible:(BOOL)isVisible;
+- (instancetype)initWithFrame:(CGRect)frame
+                     withRank:(NSString *)rank
+                     withSuit:(NSString *)suit
+                    isVisible:(BOOL)isVisible;
 - (void)flipCard;
 - (void)tiltCardWithDegrees:(float)degreesOptional;
 - (void)tiltCardRandomly;
