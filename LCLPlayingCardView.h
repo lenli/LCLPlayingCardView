@@ -85,31 +85,31 @@ extern NSInteger const CARD_HEIGHT;
 /**
  Initializes an `LCLPlayingCardView` with just a starting location `point` and use default values for width and height.
  Specify the card's `rank` and `suit`.
- If the card is `isVisible`, then the playing card shows the card's `cardFrontSubview`.
- If not visible, the playing card shows the card's `cardBackSubview`.
+ If the card `isVisible`, then the playing card shows its `cardFrontSubview`.
+ If not visible, the playing card displays its `cardBackSubview`.
 
  @param point CGPoint of the location of the playing card.
  @param rank The rank of the playing card. (A,2,3,4,5,6,7,8,9,10,J,Q,K)
  @param suit The suit of the playing card. (♠,♣,♥,♦)
  @param isVisible Boolean flag indicating if the playing card's rank and suit are visible.
  */
-- (instancetype)initWithPoint:(CGPoint)point
-                     withRank:(NSString *)rank
-                     withSuit:(NSString *)suit
-                    isVisible:(BOOL)isVisible;
+
++ (instancetype)cardWithPoint:(CGPoint)point
+                    withRank:(NSString *)rank
+                    withSuit:(NSString *)suit
+                   isVisible:(BOOL)isVisible;
 
 /**
- Designated initializer for `LCLPlayingCardView`.
- Specify the card's starting `frame`, `rank` and `suit`.
- If the card is `isVisible`, then the playing card shows the card's `cardFrontSubview`.
- If not visible, the playing card shows the card's `cardBackSubview`.
+ Initializes an `LCLPlayingCardView` with the card's starting `frame`, `rank` and `suit`.
+ If the card `isVisible`, then the playing card shows its `cardFrontSubview`.
+ If not visible, the playing card displays its `cardBackSubview`.
 
  @param point CGPoint of the location of the playing card.
  @param rank The rank of the playing card. (A,2,3,4,5,6,7,8,9,10,J,Q,K)
  @param suit The suit of the playing card. (♠,♣,♥,♦)
  @param isVisible Boolean flag indicating if the playing card's rank and suit are visible.
  */
-- (instancetype)initWithFrame:(CGRect)frame
++ (instancetype)cardWithFrame:(CGRect)frame
                      withRank:(NSString *)rank
                      withSuit:(NSString *)suit
                     isVisible:(BOOL)isVisible;

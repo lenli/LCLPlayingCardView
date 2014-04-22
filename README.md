@@ -13,7 +13,7 @@ LCLPlayingCardView is a simple, but beautiful playing card implemented as a UIVi
 
 
 ##Getting Started
-###Installation with CocoaPods
+###Install with CocoaPods
 
 [CocoaPods](http://cocoapods.org/) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries in your projects.  In your Podfile, add the following:
 ```ios
@@ -21,7 +21,7 @@ platform :ios, '7.0'
 pod "LCLPlayingCardView", "~> 1.0"
 ```
 
-###Installation By Manually Importing Headers
+###Or Manually Import Headers
 ```ios
 #import "LCLPlayingCardView.h"
 ```
@@ -30,20 +30,20 @@ pod "LCLPlayingCardView", "~> 1.0"
 ##Usage
 ###Example Usage
 
-Initialization with Point (constant width and height):
+Initialization with Point (default width and height):
 ```ios
-LCLPlayingCardView *card = [[LCLPlayingCardView alloc] initWithPoint:CGPointMake(20, 280)
-                                                         withRank:@"2"
-                                                         withSuit:@"♠"
-                                                        isVisible:YES];
+LCLPlayingCardView *card = [LCLPlayingCardView cardWithPoint:CGPointMake(20, 280)
+                                                    withRank:@"2"
+                                                    withSuit:@"♠"
+                                                   isVisible:YES];
 ```
 
 Initialization with Frame (custom width and height):
 ```ios
-LCLPlayingCardView *card = [[LCLPlayingCardView alloc] initWithPoint:CGRectMake(20, 280, 80, 112)
-                                                         withRank:@"2"
-                                                         withSuit:@"♠"
-                                                        isVisible:YES];
+LCLPlayingCardView *card = [LCLPlayingCardView cardWithPoint:CGRectMake(20, 280, 80, 112)
+                                                    withRank:@"2"
+                                                    withSuit:@"♠"
+                                                   isVisible:YES];
 ```
 
 ####Methods
@@ -54,7 +54,7 @@ LCLPlayingCardView *card = [[LCLPlayingCardView alloc] initWithPoint:CGRectMake(
 ```
 
 ##License
-LCLPlayingCardView is available under the MIT license.  See the LICENSE file for more information.  If you like this or use this, please star the repo so I know to keep improving it.
+LCLPlayingCardView is available under the MIT license.  See the LICENSE file for more information.  If you like this or use this, please star the repo or send me pull requests so I know to keep improving it.
 
 
 ##Future Improvements

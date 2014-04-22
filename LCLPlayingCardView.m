@@ -21,6 +21,28 @@ NSInteger const CARD_HEIGHT = 112;
 
 #pragma mark - Card Methods
 
++ (instancetype)cardWithPoint:(CGPoint)point
+                     withRank:(NSString *)rank
+                     withSuit:(NSString *)suit
+                    isVisible:(BOOL)isVisible
+{
+    return [[self alloc] initWithPoint:point
+                              withRank:rank
+                              withSuit:suit
+                             isVisible:isVisible];
+}
+
++ (instancetype)cardWithFrame:(CGRect)frame
+                     withRank:(NSString *)rank
+                     withSuit:(NSString *)suit
+                    isVisible:(BOOL)isVisible
+{
+    return [[self alloc] initWithFrame:frame
+                              withRank:rank
+                              withSuit:suit
+                             isVisible:isVisible];
+}
+
 - (instancetype)initWithPoint:(CGPoint)point
                      withRank:(NSString *)rank
                      withSuit:(NSString *)suit
