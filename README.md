@@ -1,4 +1,4 @@
-PlayingCardView
+LCLPlayingCardView
 ===============
 
 LCLPlayingCardView is a simple, but beautiful playing card implemented as a UIView.
@@ -21,7 +21,7 @@ platform :ios, '7.0'
 pod "LCLPlayingCardView", "~> 1.0"
 ```
 
-###Importing Headers
+###Installation By Manually Importing Headers
 ```ios
 #import "LCLPlayingCardView.h"
 ```
@@ -29,11 +29,17 @@ pod "LCLPlayingCardView", "~> 1.0"
 
 ##Usage
 ###Example Usage
+
+Initialization with Point (constant width and height):
 ```ios
 LCLPlayingCardView *card = [[LCLPlayingCardView alloc] initWithPoint:CGPointMake(20, 280)
                                                          withRank:@"2"
                                                          withSuit:@"♠"
                                                         isVisible:YES];
+```
+
+Initialization with Frame (custom width and height):
+```ios
 LCLPlayingCardView *card = [[LCLPlayingCardView alloc] initWithPoint:CGRectMake(20, 280, 80, 112)
                                                          withRank:@"2"
                                                          withSuit:@"♠"
