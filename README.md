@@ -1,14 +1,15 @@
 PlayingCardView
 ===============
 
-This is an implementation of a playing card as a UIView. 
+LCLPlayingCardView is a simple, but beautiful playing card implemented as a UIView.
 
 ![image](LCLPlayingCardViewScreenshot.png)
 
-##Features:
+###Features:
+
 - Lightweight:  No images for the cards -- 100% code.
-- Flexible: Since it’s code, you can tweak anything about the cards to fit your needs.
-- Realistic Feel:  The included customizations make the cards feel more real
+- Flexible: Since the cards are code, you can tweak anything about them to fit your needs.
+- Realistic Feel:  The included customizations make the cards feel more real.
 
 
 ##Getting Started
@@ -29,24 +30,27 @@ pod "LCLPlayingCardView", "~> 1.0"
 ##Usage
 ###Example Usage
 ```ios
-NSInteger cardWidth = 80;
-NSInteger cardHeight = 112;
-CGRect cardRect = {{20, 280}, {cardWidth,cardHeight}};
-LCLPlayingCardView *card = [[PlayingCardView alloc] initWithFrame:cardRect withRank:@"2" withSuit:@"♠" isVisible:YES];
+LCLPlayingCardView *card = [[LCLPlayingCardView alloc] initWithPoint:CGPointMake(20, 280)
+                                                         withRank:@"2"
+                                                         withSuit:@"♠"
+                                                        isVisible:YES];
+LCLPlayingCardView *card = [[LCLPlayingCardView alloc] initWithPoint:CGRectMake(20, 280, 80, 112)
+                                                         withRank:@"2"
+                                                         withSuit:@"♠"
+                                                        isVisible:YES];
 ```
 
-####Instance Methods
+####Methods
 ```ios
 - (void)flipCard;
 - (void)tiltCardWithDegrees:(float)degrees
 - (void)tiltCardRandomly
 ```
 
-
 ##License
-
-
-##Change Log
+LCLPlayingCardView is available under the MIT license.  See the LICENSE file for more information.  If you like this or use this, please star the repo so I know to keep improving it.
 
 
 ##Future Improvements
+- Provide presets for different sized cards (small, medium, large)
+- Allow for card fonts to automatically scale just by specifying card width and height

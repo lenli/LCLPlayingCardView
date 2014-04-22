@@ -2,9 +2,9 @@
 Pod::Spec.new do |s|
   s.name         = "LCLPlayingCardView"
   s.version      = "1.0.1"
-  s.summary      = "LCLPlayingCardView is a beautiful playing card implemented as a UIView."
+  s.summary      = "LCLPlayingCardView is a simple, but beautiful playing card implemented as a UIView."
   s.description  = <<-DESC
-                   LCLPlayingCardView is a beautiful playing card implemented as a UIView.
+                   LCLPlayingCardView is a simple, but beautiful playing card implemented as a UIView.
                    
                    Lightweight: No images for the cards -- 100% code.
                    Flexible: Since it’s code, you can tweak anything about the cards to fit your needs.
