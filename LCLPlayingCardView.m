@@ -19,7 +19,7 @@ NSInteger const CARD_COLOR = 0x45A1CD;
 NSInteger const CARD_WIDTH = 80;
 NSInteger const CARD_HEIGHT = 112;
 
-#pragma mark - Card Methods
+#pragma mark - Initialization Methods
 
 + (instancetype)cardWithPoint:(CGPoint)point
                      withRank:(NSString *)rank
@@ -89,6 +89,8 @@ NSInteger const CARD_HEIGHT = 112;
     return self;
 }
 
+#pragma mark - Card Methods
+
 - (void)flipCard
 {
     UIView *fromCardView, *toCardView;
@@ -129,7 +131,7 @@ NSInteger const CARD_HEIGHT = 112;
     
 }
 
-#pragma mark - Init Helper Methods
+#pragma mark - Initialization Helper Methods
 
 - (void)setupCardWrapperView
 {
