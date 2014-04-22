@@ -9,6 +9,16 @@
 
 @implementation LCLPlayingCardView
 
+// Customizing the Card
+NSString *const SUIT_FONT_FAMILY = @"TimesNewRomanPS-BoldMT";
+NSString *const RANK_FONT_FAMILY = @"HelveticaNeue-Light";
+NSInteger const RANK_FONT_SIZE = 24;
+NSInteger const SUIT_FONT_SIZE = 16;
+NSInteger const RED_COLOR = 0xe74c3c;
+NSInteger const CARD_COLOR = 0x45A1CD;
+
+#pragma mark - Card Methods
+
 - (id)initWithFrame:(CGRect)frame withRank:(NSString *)rank withSuit:(NSString *)suit isVisible:(BOOL)isVisible
 {
     self = [super initWithFrame:frame];
@@ -20,28 +30,26 @@
         _isVisible = isVisible;
         
         // Customize Card Label properties
-        _suitFontFamily = @"TimesNewRomanPS-BoldMT";
-        _rankFontFamily = @"HelveticaNeue-Light";
-        _rankFontSize = 24;
-        _suitFontSize = 16;
+        _suitFontFamily = SUIT_FONT_FAMILY;
+        _rankFontFamily = RANK_FONT_FAMILY;
+        _rankFontSize = RANK_FONT_SIZE;
+        _suitFontSize = SUIT_FONT_SIZE;
         
         NSDictionary *fontColorDictionary = @{@"♠":[UIColor blackColor],
                                               @"♣":[UIColor blackColor],
-                                              @"♥": UIColorFromRGB(0xe74c3c),
-                                              @"♦": UIColorFromRGB(0xe74c3c)
+                                              @"♥": UIColorFromRGB(RED_COLOR),
+                                              @"♦": UIColorFromRGB(RED_COLOR)
                                               };
         _labelColor = fontColorDictionary[_suit];
+        _suitSet = [NSSet setWithArray:[fontColorDictionary allKeys]];
         
         [self setupCardWrapperView];
         [self createBackSubview];
         [self createFrontSubview];
         isVisible ? [self addSubview:_cardFrontSubview] : [self addSubview:_cardBackSubview];
-        
     }
     return self;
 }
-
-#pragma mark - Card Methods
 
 - (void)flipCard
 {
@@ -84,12 +92,12 @@
 }
 
 #pragma mark - Init Helper Methods
+
 - (void)setupCardWrapperView
 {
     // Set up card
     self.layer.cornerRadius = 5.0;
     self.layer.masksToBounds = YES;
-    self.layer.borderColor = [UIColor blackColor].CGColor;
     self.layer.borderWidth = 0;
     self.backgroundColor = [UIColor whiteColor];
 }
@@ -98,7 +106,7 @@
 {
     // Set up back of card subview
     _cardBackSubview = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
-    _cardBackSubview.backgroundColor = UIColorFromRGB(0x45A1CD);
+    _cardBackSubview.backgroundColor = UIColorFromRGB(CARD_COLOR);
     _cardBackSubview.layer.borderColor = [UIColor whiteColor].CGColor;
     _cardBackSubview.layer.borderWidth = 6.0f;    
     
@@ -140,8 +148,8 @@
     CGRect cardCenterFrame = CGRectMake(_cardFrontSubview.center.x-cardLabelWidth, _cardFrontSubview.center.y-cardLabelHeight, cardLabelWidth*2, cardLabelHeight*2);
     [self createLabelForCardWithFrame:cardCenterFrame withText:self.suit withFontSize:self.suitFontSize*3 withTransformation:0 withSubview:self.cardFrontSubview];
     [self createLabelForCardWithFrame:cardCenterFrame withText:@"//" withFontSize:self.suitFontSize*3 withTransformation:0 withSubview:self.cardBackSubview];
-    
 }
+
 
 #pragma mark - Helper Methods
 
@@ -152,8 +160,7 @@
     newLabel.text = text;
     newLabel.textAlignment = NSTextAlignmentCenter;
     
-    NSArray *suitArray = @[@"♦",@"♠",@"♣",@"♥"];
-    if ([suitArray containsObject:text]) {
+    if ([self.suitSet containsObject:text]) {
         newLabel.font = [UIFont fontWithName:self.suitFontFamily size:fontSize];
     } else {
         newLabel.font = [UIFont fontWithName:self.rankFontFamily size:fontSize];
@@ -164,7 +171,6 @@
     if (subview == self.cardFrontSubview) {
         newLabel.textColor = self.labelColor;
     } else {
-        [UIFont fontWithName:@"ArialHebrew-Bold" size:fontSize];
         newLabel.textColor = [UIColor whiteColor];
     }
     [subview addSubview:newLabel];
