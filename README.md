@@ -60,3 +60,5 @@ LCLPlayingCardView is available under the MIT license.  See the LICENSE file for
 ##Future Improvements
 - Provide presets for different sized cards (small, medium, large)
 - Allow for card fonts to automatically scale just by specifying card width and height
+- Externally manage back of card image vs solid color
+

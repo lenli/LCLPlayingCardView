@@ -21,26 +21,12 @@ NSInteger const CARD_HEIGHT = 112;
 
 #pragma mark - Initialization Methods
 
-+ (instancetype)cardWithPoint:(CGPoint)point
-                     withRank:(NSString *)rank
-                     withSuit:(NSString *)suit
-                    isVisible:(BOOL)isVisible
+- (instancetype)init
 {
-    return [[self alloc] initWithPoint:point
-                              withRank:rank
-                              withSuit:suit
-                             isVisible:isVisible];
-}
-
-+ (instancetype)cardWithFrame:(CGRect)frame
-                     withRank:(NSString *)rank
-                     withSuit:(NSString *)suit
-                    isVisible:(BOOL)isVisible
-{
-    return [[self alloc] initWithFrame:frame
-                              withRank:rank
-                              withSuit:suit
-                             isVisible:isVisible];
+    return [self initWithFrame:CGRectMake(0, 0, CARD_WIDTH, CARD_HEIGHT)
+                      withRank:@"A"
+                      withSuit:@"♠"
+                     isVisible:YES];
 }
 
 - (instancetype)initWithPoint:(CGPoint)point
@@ -87,6 +73,28 @@ NSInteger const CARD_HEIGHT = 112;
         isVisible ? [self addSubview:_cardFrontSubview] : [self addSubview:_cardBackSubview];
     }
     return self;
+}
+
++ (instancetype)cardWithPoint:(CGPoint)point
+                     withRank:(NSString *)rank
+                     withSuit:(NSString *)suit
+                    isVisible:(BOOL)isVisible 
+{
+    return [[self alloc] initWithPoint:point
+                              withRank:rank
+                              withSuit:suit
+                             isVisible:isVisible];
+}
+
++ (instancetype)cardWithFrame:(CGRect)frame
+                     withRank:(NSString *)rank
+                     withSuit:(NSString *)suit
+                    isVisible:(BOOL)isVisible
+{
+    return [[self alloc] initWithFrame:frame
+                              withRank:rank
+                              withSuit:suit
+                             isVisible:isVisible];
 }
 
 #pragma mark - Card Methods
@@ -144,13 +152,13 @@ NSInteger const CARD_HEIGHT = 112;
 
 - (void)createBackSubview
 {
-    // Set up back of card subview
+    // Set up back of card subview with solid color
     _cardBackSubview = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
     _cardBackSubview.backgroundColor = UIColorFromRGB(CARD_COLOR);
     _cardBackSubview.layer.borderColor = [UIColor whiteColor].CGColor;
     _cardBackSubview.layer.borderWidth = 6.0f;
     
-    /* For image back, you can use this:
+    /* Set up back of card subview with an image:
      UIGraphicsBeginImageContext(_cardBackSubview.frame.size);
      [[UIImage imageNamed:@"cardBack.jpg"] drawInRect:self.bounds];
      UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
