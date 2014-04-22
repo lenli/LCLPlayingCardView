@@ -23,7 +23,7 @@ extern NSInteger const CARD_HEIGHT;
  `LCLPlayingCardView` is a subclass of `UIView` that makes beautiful, but simple playing cards without requiring images -- it's 100% code.
  */
 
-@interface PlayingCardView : UIView
+@interface LCLPlayingCardView : UIView
 
 // 
  ///------------------------------------------------
