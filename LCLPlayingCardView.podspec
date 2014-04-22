@@ -9,6 +9,6 @@ Pod::Spec.new do |s|
   s.author             = { "Len Li" => "leonard.li@gmail.com" }
   s.social_media_url   = "http://twitter.com/lenli"
   s.platform     = :ios, "5.0"
-  s.source       = { :git => "https://github.com/lenli/LCLPlayingCardView.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/lenli/LCLPlayingCardView.git", :tag => "1.0.1" }
   s.source_files  = "LCLPlayingCardView*.{h,m}"
 end
