@@ -40,7 +40,7 @@ LCLPlayingCardView *card = [LCLPlayingCardView cardWithPoint:CGPointMake(20, 280
 
 Initialization with Frame (custom width and height):
 ```ios
-LCLPlayingCardView *card = [LCLPlayingCardView cardWithPoint:CGRectMake(20, 280, 80, 112)
+LCLPlayingCardView *card = [LCLPlayingCardView cardWithFrame:CGRectMake(20, 280, 80, 112)
                                                     withRank:@"2"
                                                     withSuit:@"♠"
                                                    isVisible:YES];
