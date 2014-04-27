@@ -41,7 +41,7 @@ LCLPlayingCardView *card = [LCLPlayingCardView cardWithPoint:CGPointMake(20, 280
 
 Initialization with Frame (custom width and height):
 ```ios
-LCLPlayingCardView *card = [LCLPlayingCardView cardWithPoint:CGRectMake(20, 280, 80, 112)
+LCLPlayingCardView *card = [LCLPlayingCardView cardWithFrame:CGRectMake(20, 280, 80, 112)
                                                     withRank:@"2"
                                                     withSuit:@"♠"
                                                    isVisible:YES];
@@ -56,10 +56,15 @@ LCLPlayingCardView *card = [LCLPlayingCardView cardWithPoint:CGRectMake(20, 280,
 ```
 
 ##License
-LCLPlayingCardView is available under the MIT license.  See the LICENSE file for more information.  If you like this or use this, please star the repo or send me pull requests so I know to keep improving it.
+LCLPlayingCardView is available under the MIT license.  See the LICENSE file for more information.  
+
+If you like this or use this, please star the repo, raise issues/ideas, send me pull requests, etc. so I know to keep improving it.
 
 
 ##Future Improvements
+- Add example project (In progress)
+- Add LCLPlayingCardSuit enum (In progress)
+- Allow customization of cardbacks (In progress)
 - Provide presets for different sized cards (small, medium, large)
 - Allow for card fonts to automatically scale just by specifying card width and height
 - Externally manage back of card image vs solid color
