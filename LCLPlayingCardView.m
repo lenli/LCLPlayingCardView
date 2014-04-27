@@ -19,19 +19,20 @@ NSInteger const CARD_COLOR = 0x45A1CD;
 NSInteger const CARD_WIDTH = 80;
 NSInteger const CARD_HEIGHT = 112;
 
+
 #pragma mark - Initialization Methods
 
 - (instancetype)init
 {
     return [self initWithFrame:CGRectMake(0, 0, CARD_WIDTH, CARD_HEIGHT)
                       withRank:@"A"
-                      withSuit:@"♠"
+                      withSuit:LCLPlayingCardSpade
                      isVisible:YES];
 }
 
 - (instancetype)initWithPoint:(CGPoint)point
                      withRank:(NSString *)rank
-                     withSuit:(NSString *)suit
+                     withSuit:(LCLPlayingCardSuit)suit
                     isVisible:(BOOL)isVisible
 {
     return [self initWithFrame:CGRectMake(point.x, point.y, CARD_WIDTH, CARD_HEIGHT)
@@ -42,14 +43,14 @@ NSInteger const CARD_HEIGHT = 112;
 
 - (instancetype)initWithFrame:(CGRect)frame
                      withRank:(NSString *)rank
-                     withSuit:(NSString *)suit
+                     withSuit:(LCLPlayingCardSuit)suit
                     isVisible:(BOOL)isVisible
 {
     self = [super initWithFrame:frame];
     if (self) {
         
         // Initialize Card
-        _suit = suit;
+        _suit = [self getSuitStringFromLCLPlayingCardSuit:suit];
         _rank = rank;
         _isVisible = isVisible;
         
@@ -69,7 +70,7 @@ NSInteger const CARD_HEIGHT = 112;
         
         [self setupCardWrapperView];
         [self createBackSubview];
-        [self createFrontSubview];
+        [self createLabels];
         isVisible ? [self addSubview:_cardFrontSubview] : [self addSubview:_cardBackSubview];
     }
     return self;
@@ -77,7 +78,7 @@ NSInteger const CARD_HEIGHT = 112;
 
 + (instancetype)cardWithPoint:(CGPoint)point
                      withRank:(NSString *)rank
-                     withSuit:(NSString *)suit
+                     withSuit:(LCLPlayingCardSuit)suit
                     isVisible:(BOOL)isVisible 
 {
     return [[self alloc] initWithPoint:point
@@ -88,7 +89,7 @@ NSInteger const CARD_HEIGHT = 112;
 
 + (instancetype)cardWithFrame:(CGRect)frame
                      withRank:(NSString *)rank
-                     withSuit:(NSString *)suit
+                     withSuit:(LCLPlayingCardSuit)suit
                     isVisible:(BOOL)isVisible
 {
     return [[self alloc] initWithFrame:frame
@@ -96,6 +97,7 @@ NSInteger const CARD_HEIGHT = 112;
                               withSuit:suit
                              isVisible:isVisible];
 }
+
 
 #pragma mark - Card Methods
 
@@ -167,7 +169,7 @@ NSInteger const CARD_HEIGHT = 112;
      */
 }
 
-- (void)createFrontSubview
+- (void)createLabels
 {
     // Set up front of card subview
     _cardFrontSubview = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
@@ -267,6 +269,21 @@ NSInteger const CARD_HEIGHT = 112;
     }
     [subview addSubview:newLabel];
     
+}
+
+- (NSString *)getSuitStringFromLCLPlayingCardSuit:(LCLPlayingCardSuit)enumSuit
+{
+    NSString *suitString;
+    if (enumSuit == 1) {
+        suitString = @"♣";
+    } else if (enumSuit == 2) {
+        suitString = @"♦";
+    } else if (enumSuit == 3) {
+        suitString = @"♥";
+    } else {
+        suitString = @"♠";
+    }
+    return suitString;
 }
 
 - (NSString *)description

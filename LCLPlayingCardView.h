@@ -19,6 +19,13 @@ extern NSInteger const CARD_COLOR;
 extern NSInteger const CARD_WIDTH;
 extern NSInteger const CARD_HEIGHT;
 
+typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
+    LCLPlayingCardClub = 1,
+    LCLPlayingCardDiamond = 2,
+    LCLPlayingCardHeart = 3,
+    LCLPlayingCardSpade = 4,
+};
+
 /**
  `LCLPlayingCardView` is a subclass of `UIView` that makes beautiful, but simple playing cards without requiring images -- it's 100% code.
  */
@@ -31,7 +38,8 @@ extern NSInteger const CARD_HEIGHT;
 ///------------------------------------------------
 
 /**
- The playing card's suit as text (♠,♣,♥,♦)
+ The playing card's suit as text (♠,♣,♥,♦).
+ Use LCLPlayingCardSuits: LCLPlayingCardClub, LCLPlayingCardDiamond, LCLPlayingCardHeart, LCLPlayingCardSpade
  */
 @property (strong, nonatomic) NSString *suit;
 /**
@@ -52,6 +60,11 @@ extern NSInteger const CARD_HEIGHT;
 @property (strong, nonatomic) NSSet *suitSet;
  
 // Card Label Properties
+
+/**
+ The text on the back of the playing card
+ */
+@property (strong, nonatomic) NSString *cardBackText;
 /**
  The playing card's suit Font Family
  */
@@ -96,7 +109,7 @@ extern NSInteger const CARD_HEIGHT;
 
 + (instancetype)cardWithPoint:(CGPoint)point
                     withRank:(NSString *)rank
-                    withSuit:(NSString *)suit
+                     withSuit:(LCLPlayingCardSuit)suit
                    isVisible:(BOOL)isVisible;
 
 /**
@@ -111,24 +124,25 @@ extern NSInteger const CARD_HEIGHT;
  */
 + (instancetype)cardWithFrame:(CGRect)frame
                      withRank:(NSString *)rank
-                     withSuit:(NSString *)suit
+                     withSuit:(LCLPlayingCardSuit)suit
                     isVisible:(BOOL)isVisible;
 
 ///-----------------------------------------------------------
 /// @name Card Customization Methods
 ///-----------------------------------------------------------
 /**
-	Flips the card from `cardFrontSubview` to `cardBackSubview` or vice versa using a UIView animation.
+  Flips the card from `cardFrontSubview` to `cardBackSubview` or vice versa using a UIView animation.
   */
 - (void)flipCard;
 /**
-	Specify the degrees for which the card is tilted
+  Specify the degrees for which the card is tilted
   */
 - (void)tiltCardWithDegrees:(float)degrees;
 /**
-	Randomly tilt the card up to 5 degrees
+  Randomly tilt the card up to 5 degrees
   */
 - (void)tiltCardRandomly;
+
 
 @end
 

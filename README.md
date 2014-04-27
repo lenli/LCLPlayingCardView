@@ -36,6 +36,7 @@ LCLPlayingCardView *card = [LCLPlayingCardView cardWithPoint:CGPointMake(20, 280
                                                     withRank:@"2"
                                                     withSuit:@"♠"
                                                    isVisible:YES];
+[self.view addSubview:card];
 ```
 
 Initialization with Frame (custom width and height):
@@ -44,6 +45,7 @@ LCLPlayingCardView *card = [LCLPlayingCardView cardWithPoint:CGRectMake(20, 280,
                                                     withRank:@"2"
                                                     withSuit:@"♠"
                                                    isVisible:YES];
+[self.view addSubview:card];
 ```
 
 ####Methods
