@@ -15,7 +15,7 @@ NSString *const RANK_FONT_FAMILY = @"HelveticaNeue-Light";
 NSInteger const RANK_FONT_SIZE = 24;
 NSInteger const SUIT_FONT_SIZE = 16;
 NSInteger const RED_COLOR = 0xe74c3c;
-NSInteger const CARD_COLOR = 0x45A1CD;
+NSInteger const DEFAULT_CARD_COLOR = 0x45A1CD;
 NSInteger const CARD_WIDTH = 80;
 NSInteger const CARD_HEIGHT = 112;
 
@@ -25,25 +25,29 @@ NSInteger const CARD_HEIGHT = 112;
 - (instancetype)init
 {
     return [self initWithFrame:CGRectMake(0, 0, CARD_WIDTH, CARD_HEIGHT)
-                      withRank:@"A"
+                      withRank:1
                       withSuit:LCLPlayingCardSpade
+                     withColor:UIColorFromRGB(DEFAULT_CARD_COLOR)
                      isVisible:YES];
 }
 
 - (instancetype)initWithPoint:(CGPoint)point
-                     withRank:(NSString *)rank
+                     withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
+                    withColor:(UIColor *)color
                     isVisible:(BOOL)isVisible
 {
     return [self initWithFrame:CGRectMake(point.x, point.y, CARD_WIDTH, CARD_HEIGHT)
                       withRank:rank
                       withSuit:suit
+                     withColor:color
                      isVisible:isVisible];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
-                     withRank:(NSString *)rank
+                     withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
+                    withColor:(UIColor *)color
                     isVisible:(BOOL)isVisible
 {
     self = [super initWithFrame:frame];
@@ -51,7 +55,7 @@ NSInteger const CARD_HEIGHT = 112;
         
         // Initialize Card
         _suit = [self getSuitStringFromLCLPlayingCardSuit:suit];
-        _rank = rank;
+        _rank = [self convertToCardRankFromNumber:rank];
         _isVisible = isVisible;
         
         // Customize Card Label properties
@@ -69,7 +73,9 @@ NSInteger const CARD_HEIGHT = 112;
         _suitSet = [NSSet setWithArray:[fontColorDictionary allKeys]];
         
         [self setupCardWrapperView];
-        [self createBackSubview];
+        
+        UIColor *backColor = (color) ? color : UIColorFromRGB(DEFAULT_CARD_COLOR);
+        [self createBackSubviewWithColor:backColor];
         [self createLabels];
         isVisible ? [self addSubview:_cardFrontSubview] : [self addSubview:_cardBackSubview];
     }
@@ -77,24 +83,28 @@ NSInteger const CARD_HEIGHT = 112;
 }
 
 + (instancetype)cardWithPoint:(CGPoint)point
-                     withRank:(NSString *)rank
+                     withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
+                    withColor:(UIColor *)color
                     isVisible:(BOOL)isVisible 
 {
     return [[self alloc] initWithPoint:point
                               withRank:rank
                               withSuit:suit
+                             withColor:color
                              isVisible:isVisible];
 }
 
 + (instancetype)cardWithFrame:(CGRect)frame
-                     withRank:(NSString *)rank
+                     withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
+                    withColor:(UIColor *)color
                     isVisible:(BOOL)isVisible
 {
     return [[self alloc] initWithFrame:frame
                               withRank:rank
                               withSuit:suit
+                             withColor:color
                              isVisible:isVisible];
 }
 
@@ -152,11 +162,11 @@ NSInteger const CARD_HEIGHT = 112;
     self.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)createBackSubview
+- (void)createBackSubviewWithColor:(UIColor *)color
 {
     // Set up back of card subview with solid color
     _cardBackSubview = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
-    _cardBackSubview.backgroundColor = UIColorFromRGB(CARD_COLOR);
+    _cardBackSubview.backgroundColor = color;
     _cardBackSubview.layer.borderColor = [UIColor whiteColor].CGColor;
     _cardBackSubview.layer.borderWidth = 6.0f;
     
@@ -274,16 +284,44 @@ NSInteger const CARD_HEIGHT = 112;
 - (NSString *)getSuitStringFromLCLPlayingCardSuit:(LCLPlayingCardSuit)enumSuit
 {
     NSString *suitString;
-    if (enumSuit == 1) {
-        suitString = @"♣";
-    } else if (enumSuit == 2) {
-        suitString = @"♦";
-    } else if (enumSuit == 3) {
-        suitString = @"♥";
-    } else {
-        suitString = @"♠";
+    switch (enumSuit) {
+        case 1:
+            suitString = @"♣";
+            break;
+        case 2:
+            suitString = @"♦";
+            break;
+        case 3:
+            suitString = @"♥";
+            break;
+        default:
+            suitString = @"♠";
+            break;
     }
     return suitString;
+}
+
+- (NSString *)convertToCardRankFromNumber:(NSInteger)cardNumber
+{
+    NSString *rankString;
+    switch (cardNumber) {
+        case 1:
+            rankString = @"A";
+            break;
+        case 11:
+            rankString = @"J";
+            break;
+        case 12:
+            rankString = @"Q";
+            break;
+        case 13:
+            rankString = @"K";
+            break;
+        default:
+            rankString = [NSString stringWithFormat:@"%d",cardNumber];
+            break;
+    }
+    return rankString;
 }
 
 - (NSString *)description

@@ -28,9 +28,11 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor greenColor]];
     LCLPlayingCardView *card = [LCLPlayingCardView cardWithPoint:CGPointMake(120, 100)
-                                                        withRank:@"A"
+                                                        withRank:1
                                                         withSuit:LCLPlayingCardSpade
-                                                       isVisible:YES];
+                                
+                                                       withColor:nil
+                                        isVisible:NO];
     [self.view addSubview:card];
     
 }

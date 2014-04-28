@@ -15,7 +15,7 @@ extern NSString *const RANK_FONT_FAMILY;
 extern NSInteger const RANK_FONT_SIZE;
 extern NSInteger const SUIT_FONT_SIZE;
 extern NSInteger const RED_COLOR;
-extern NSInteger const CARD_COLOR;
+extern NSInteger const DEFAULT_CARD_COLOR;
 extern NSInteger const CARD_WIDTH;
 extern NSInteger const CARD_HEIGHT;
 
@@ -23,8 +23,9 @@ typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
     LCLPlayingCardClub = 1,
     LCLPlayingCardDiamond = 2,
     LCLPlayingCardHeart = 3,
-    LCLPlayingCardSpade = 4,
+    LCLPlayingCardSpade = 4
 };
+
 
 /**
  `LCLPlayingCardView` is a subclass of `UIView` that makes beautiful, but simple playing cards without requiring images -- it's 100% code.
@@ -39,11 +40,11 @@ typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
 
 /**
  The playing card's suit as text (♠,♣,♥,♦).
- Use LCLPlayingCardSuits: LCLPlayingCardClub, LCLPlayingCardDiamond, LCLPlayingCardHeart, LCLPlayingCardSpade
+ Use LCLPlayingCardSuits: LCLPlayingCardClub, LCLPlayingCardDiamond, LCLPlayingCardHeart, LCLPlayingCardSpade.
  */
 @property (strong, nonatomic) NSString *suit;
 /**
- The playing card's rank (A,2,3,4,5,6,7,8,9,10,J,Q,K)
+ The playing card's rank (A,2,3,4,5,6,7,8,9,10,J,Q,K).  If 1,11,12,13 are given, convert to A, J, Q, K.
  */
 @property (strong, nonatomic) NSString *rank;
 /**
@@ -102,15 +103,17 @@ typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
  If not visible, the playing card displays its `cardBackSubview`.
 
  @param point CGPoint of the location of the playing card.
- @param rank The rank of the playing card. (A,2,3,4,5,6,7,8,9,10,J,Q,K)
- @param suit The suit of the playing card. (♠,♣,♥,♦)
+ @param rank The rank of the playing card (A,2,3,4,5,6,7,8,9,10,J,Q,K).  If 1,11,12,13 are given, convert to A, J, Q, K.
+ @param suit The suit of the playing card (♠,♣,♥,♦).  Use LCLPlayingCardSuits: LCLPlayingCardClub, LCLPlayingCardDiamond, LCLPlayingCardHeart, LCLPlayingCardSpade.
+ @param color The color of the back of the playing card.  Default color for nil is a light blue.
  @param isVisible Boolean flag indicating if the playing card's rank and suit are visible.
  */
 
 + (instancetype)cardWithPoint:(CGPoint)point
-                    withRank:(NSString *)rank
+                     withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
-                   isVisible:(BOOL)isVisible;
+                    withColor:(UIColor *)color
+                    isVisible:(BOOL)isVisible;
 
 /**
  Initializes an `LCLPlayingCardView` with the card's starting `frame`, `rank` and `suit`.
@@ -118,13 +121,15 @@ typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
  If not visible, the playing card displays its `cardBackSubview`.
 
  @param point CGPoint of the location of the playing card.
- @param rank The rank of the playing card. (A,2,3,4,5,6,7,8,9,10,J,Q,K)
- @param suit The suit of the playing card. (♠,♣,♥,♦)
+ @param rank The rank of the playing card (A,2,3,4,5,6,7,8,9,10,J,Q,K).  If 1,11,12,13 are given, convert to A, J, Q, K.
+ @param suit The suit of the playing card (♠,♣,♥,♦). Use LCLPlayingCardSuits: LCLPlayingCardClub, LCLPlayingCardDiamond, LCLPlayingCardHeart, LCLPlayingCardSpade.
+ @param color The color of the back of the playing card.  Default color for nil is a light blue.
  @param isVisible Boolean flag indicating if the playing card's rank and suit are visible.
  */
 + (instancetype)cardWithFrame:(CGRect)frame
-                     withRank:(NSString *)rank
+                     withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
+                    withColor:(UIColor *)color
                     isVisible:(BOOL)isVisible;
 
 ///-----------------------------------------------------------

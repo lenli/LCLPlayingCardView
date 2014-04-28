@@ -58,13 +58,17 @@ LCLPlayingCardView *card = [LCLPlayingCardView cardWithFrame:CGRectMake(20, 280,
 ##License
 LCLPlayingCardView is available under the MIT license.  See the LICENSE file for more information.  
 
-If you like this or use this, please star the repo, raise issues/ideas, send me pull requests, etc. so I know to keep improving it.
+If you like this or use this, please star/fork/watch/tweet the repo, raise issues/ideas, send me pull requests, etc. so I know to keep improving it.
 
+
+##Change Log
+####v1.0.2
+- Add example project
+- Add LCLPlayingCardSuit enum
+- Allow customization of cardbacks (In progress)
 
 ##Future Improvements
-- Add example project (In progress)
-- Add LCLPlayingCardSuit enum (In progress)
-- Allow customization of cardbacks (In progress)
+- Provide animation method
 - Provide presets for different sized cards (small, medium, large)
 - Allow for card fonts to automatically scale just by specifying card width and height
 - Externally manage back of card image vs solid color
