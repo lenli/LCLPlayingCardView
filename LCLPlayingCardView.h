@@ -33,8 +33,8 @@ typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
 
 @interface LCLPlayingCardView : UIView
 
-// 
- ///------------------------------------------------
+//
+///------------------------------------------------
 /// @name Card Properties
 ///------------------------------------------------
 
@@ -59,7 +59,7 @@ typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
  A set containing the legal suits for a playing card (♠,♣,♥,♦)
  */
 @property (strong, nonatomic) NSSet *suitSet;
- 
+
 // Card Label Properties
 
 /**
@@ -101,11 +101,12 @@ typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
  Specify the card's `rank` and `suit`.
  If the card `isVisible`, then the playing card shows its `cardFrontSubview`.
  If not visible, the playing card displays its `cardBackSubview`.
-
+ 
  @param point CGPoint of the location of the playing card.
  @param rank The rank of the playing card (A,2,3,4,5,6,7,8,9,10,J,Q,K).  If 1,11,12,13 are given, convert to A, J, Q, K.
  @param suit The suit of the playing card (♠,♣,♥,♦).  Use LCLPlayingCardSuits: LCLPlayingCardClub, LCLPlayingCardDiamond, LCLPlayingCardHeart, LCLPlayingCardSpade.
  @param color The color of the back of the playing card.  Default color for nil is a light blue.
+ @param text Two character text for the back of the playing card.  If text length is greater than two, it will be truncated to two.
  @param isVisible Boolean flag indicating if the playing card's rank and suit are visible.
  */
 
@@ -113,39 +114,73 @@ typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
                      withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
                     withColor:(UIColor *)color
+                     withText:(NSString *)text
+                    isVisible:(BOOL)isVisible;
+/**
+ Initializes an `LCLPlayingCardView` with just a starting location `point` and use default values for width and height.
+ Specify the card's `rank` and `suit`.
+ If the card `isVisible`, then the playing card shows its `cardFrontSubview`.
+ If not visible, the playing card displays its `cardBackSubview`.
+ 
+ @param point CGPoint of the location of the playing card.
+ @param rank The rank of the playing card (A,2,3,4,5,6,7,8,9,10,J,Q,K).  If 1,11,12,13 are given, convert to A, J, Q, K.
+ @param suit The suit of the playing card (♠,♣,♥,♦).  Use LCLPlayingCardSuits: LCLPlayingCardClub, LCLPlayingCardDiamond, LCLPlayingCardHeart, LCLPlayingCardSpade.
+ @param isVisible Boolean flag indicating if the playing card's rank and suit are visible.
+ */
+
++ (instancetype)cardWithPoint:(CGPoint)point
+                     withRank:(NSInteger)rank
+                     withSuit:(LCLPlayingCardSuit)suit
                     isVisible:(BOOL)isVisible;
 
 /**
  Initializes an `LCLPlayingCardView` with the card's starting `frame`, `rank` and `suit`.
  If the card `isVisible`, then the playing card shows its `cardFrontSubview`.
  If not visible, the playing card displays its `cardBackSubview`.
-
+ 
  @param point CGPoint of the location of the playing card.
  @param rank The rank of the playing card (A,2,3,4,5,6,7,8,9,10,J,Q,K).  If 1,11,12,13 are given, convert to A, J, Q, K.
  @param suit The suit of the playing card (♠,♣,♥,♦). Use LCLPlayingCardSuits: LCLPlayingCardClub, LCLPlayingCardDiamond, LCLPlayingCardHeart, LCLPlayingCardSpade.
  @param color The color of the back of the playing card.  Default color for nil is a light blue.
+ @param text Two character text for the back of the playing card.  If text length is greater than two, it will be truncated to two.
  @param isVisible Boolean flag indicating if the playing card's rank and suit are visible.
  */
+
 + (instancetype)cardWithFrame:(CGRect)frame
                      withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
                     withColor:(UIColor *)color
+                     withText:(NSString *)text
+                    isVisible:(BOOL)isVisible;
+/**
+ Initializes an `LCLPlayingCardView` with the card's starting `frame`, `rank` and `suit`.
+ If the card `isVisible`, then the playing card shows its `cardFrontSubview`.
+ If not visible, the playing card displays its `cardBackSubview`.
+ 
+ @param point CGPoint of the location of the playing card.
+ @param rank The rank of the playing card (A,2,3,4,5,6,7,8,9,10,J,Q,K).  If 1,11,12,13 are given, convert to A, J, Q, K.
+ @param suit The suit of the playing card (♠,♣,♥,♦). Use LCLPlayingCardSuits: LCLPlayingCardClub, LCLPlayingCardDiamond, LCLPlayingCardHeart, LCLPlayingCardSpade.
+ @param isVisible Boolean flag indicating if the playing card's rank and suit are visible.
+ */
++ (instancetype)cardWithFrame:(CGPoint)point
+                     withRank:(NSInteger)rank
+                     withSuit:(LCLPlayingCardSuit)suit
                     isVisible:(BOOL)isVisible;
 
 ///-----------------------------------------------------------
 /// @name Card Customization Methods
 ///-----------------------------------------------------------
 /**
-  Flips the card from `cardFrontSubview` to `cardBackSubview` or vice versa using a UIView animation.
-  */
+ Flips the card from `cardFrontSubview` to `cardBackSubview` or vice versa using a UIView animation.
+ */
 - (void)flipCard;
 /**
-  Specify the degrees for which the card is tilted
-  */
+ Specify the degrees for which the card is tilted
+ */
 - (void)tiltCardWithDegrees:(float)degrees;
 /**
-  Randomly tilt the card up to 5 degrees
-  */
+ Randomly tilt the card up to 5 degrees
+ */
 - (void)tiltCardRandomly;
 
 
