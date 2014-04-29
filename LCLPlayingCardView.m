@@ -101,12 +101,12 @@ NSInteger const CARD_HEIGHT = 112;
 }
 
 
-+ (instancetype)cardWithFrame:(CGPoint)point
++ (instancetype)cardWithFrame:(CGRect)frame
                      withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
                     isVisible:(BOOL)isVisible
 {
-    return [[self alloc] initWithPoint:point
+    return [[self alloc] initWithFrame:frame
                               withRank:rank
                               withSuit:suit
                              withColor:nil

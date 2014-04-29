@@ -162,7 +162,7 @@ typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
  @param suit The suit of the playing card (♠,♣,♥,♦). Use LCLPlayingCardSuits: LCLPlayingCardClub, LCLPlayingCardDiamond, LCLPlayingCardHeart, LCLPlayingCardSpade.
  @param isVisible Boolean flag indicating if the playing card's rank and suit are visible.
  */
-+ (instancetype)cardWithFrame:(CGPoint)point
++ (instancetype)cardWithFrame:(CGRect)frame
                      withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
                     isVisible:(BOOL)isVisible;
