@@ -26,8 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self.view setBackgroundColor:[UIColor blackColor]];
+    
     LCLPlayingCardView *card1 = [LCLPlayingCardView cardWithPoint:CGPointMake(60, 100)
                                                         withRank:1
                                                         withSuit:LCLPlayingCardClub

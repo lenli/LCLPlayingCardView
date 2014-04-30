@@ -61,7 +61,7 @@ LCLPlayingCardView *card4 = [LCLPlayingCardView cardWithFrame:CGRectMake(160, 25
                                                     withColor:[UIColor brownColor]
                                                      withText:@"BR"
                                                     isVisible:NO];
-[self.view addSubview:card4];                    
+[self.view addSubview:card4];
 ```
 
 ####Methods
