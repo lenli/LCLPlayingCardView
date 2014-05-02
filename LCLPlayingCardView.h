@@ -40,11 +40,12 @@ typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
 
 /**
  The playing card's suit as text (♠,♣,♥,♦).
- Use LCLPlayingCardSuits: LCLPlayingCardClub, LCLPlayingCardDiamond, LCLPlayingCardHeart, LCLPlayingCardSpade.
+ Initialize with LCLPlayingCardSuits: LCLPlayingCardClub, LCLPlayingCardDiamond, LCLPlayingCardHeart, LCLPlayingCardSpade.
  */
-@property (strong, nonatomic) NSString *suit;
+@property (readonly, nonatomic) NSString *suit;
 /**
- The playing card's rank (A,2,3,4,5,6,7,8,9,10,J,Q,K).  If 1,11,12,13 are given, convert to A, J, Q, K.
+ The playing card's rank as (A,2,3,4,5,6,7,8,9,10,J,Q,K).  
+ If initialized with 1,11,12,13, the string will be converted to A, J, Q, K.
  */
 @property (strong, nonatomic) NSString *rank;
 /**

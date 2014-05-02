@@ -1,10 +1,10 @@
 PODS:
-  - LCLPlayingCardView (1.0.1)
+  - LCLPlayingCardView (1.0.2)
 
 DEPENDENCIES:
   - LCLPlayingCardView (~> 1.0)
 
 SPEC CHECKSUMS:
-  LCLPlayingCardView: 31f1651ab7718483ba04b1e066da69b2f3a0945e
+  LCLPlayingCardView: 16fd7151cc703109576435789520d821b7a46ecc
 
 COCOAPODS: 0.32.1

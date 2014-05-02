@@ -28,13 +28,17 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor blackColor]];
     
-    LCLPlayingCardView *card1 = [LCLPlayingCardView cardWithPoint:CGPointMake(60, 100)
+    LCLPlayingCardView *card0 = [[LCLPlayingCardView alloc ]init];
+    
+    [self.view addSubview:card0];
+    
+    LCLPlayingCardView *card1 = [LCLPlayingCardView cardWithPoint:CGPointMake(60, 150)
                                                         withRank:1
                                                         withSuit:LCLPlayingCardClub
                                                        isVisible:YES];
     [self.view addSubview:card1];
     
-    LCLPlayingCardView *card2 = [LCLPlayingCardView cardWithPoint:CGPointMake(160, 100)
+    LCLPlayingCardView *card2 = [LCLPlayingCardView cardWithPoint:CGPointMake(160, 150)
                                                         withRank:2
                                                         withSuit:LCLPlayingCardDiamond
                                                        withColor:[UIColor redColor]
@@ -42,13 +46,13 @@
                                                        isVisible:NO];
     [self.view addSubview:card2];
     
-    LCLPlayingCardView *card3 = [LCLPlayingCardView cardWithFrame:CGRectMake(60, 250, 80, 112)
+    LCLPlayingCardView *card3 = [LCLPlayingCardView cardWithFrame:CGRectMake(60, 300, 80, 112)
                                                          withRank:3
                                                          withSuit:LCLPlayingCardHeart
                                                         isVisible:YES];
     [self.view addSubview:card3];
     
-    LCLPlayingCardView *card4 = [LCLPlayingCardView cardWithFrame:CGRectMake(160, 250, 80, 112)
+    LCLPlayingCardView *card4 = [LCLPlayingCardView cardWithFrame:CGRectMake(160, 300, 80, 112)
                                                          withRank:4
                                                          withSuit:LCLPlayingCardSpade
                                                         withColor:[UIColor brownColor]
