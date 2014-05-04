@@ -47,46 +47,7 @@ typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
  The playing card's rank as (A,2,3,4,5,6,7,8,9,10,J,Q,K).  
  If initialized with 1,11,12,13, the string will be converted to A, J, Q, K.
  */
-@property (strong, nonatomic) NSString *rank;
-/**
- The front of the playing card which displays suit and rank.
- */
-@property (strong, nonatomic) UIView *cardFrontSubview;
-/**
- The back of the playing card which displays the card color and perhaps text or an image.
- */
-@property (strong, nonatomic) UIView *cardBackSubview;
-/**
- A set containing the legal suits for a playing card (♠,♣,♥,♦)
- */
-@property (strong, nonatomic) NSSet *suitSet;
-
-// Card Label Properties
-
-/**
- The text on the back of the playing card
- */
-@property (strong, nonatomic) NSString *cardBackText;
-/**
- The playing card's suit Font Family
- */
-@property (weak, nonatomic) NSString *suitFontFamily;
-/**
- The playing card's rank Font Family
- */
-@property (weak, nonatomic) NSString *rankFontFamily;
-/**
- The playing card's label color
- */
-@property (weak, nonatomic) UIColor *labelColor;
-/**
- The playing card's suit Font Size
- */
-@property (nonatomic) NSInteger suitFontSize;
-/**
- The playing card's rank Font Size
- */
-@property (nonatomic) NSInteger rankFontSize;
+@property (readonly, nonatomic) NSString *rank;
 /**
  If playing card is visible, show the front of the card.
  If playing card is not visible, show the back of the card

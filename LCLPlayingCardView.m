@@ -7,6 +7,47 @@
 
 #import "LCLPlayingCardView.h"
 
+
+@interface LCLPlayingCardView ()
+/**
+ The front of the playing card which displays suit and rank.
+ */
+@property (strong, nonatomic) UIView *cardFrontSubview;
+/**
+ The back of the playing card which displays the card color and perhaps text or an image.
+ */
+@property (strong, nonatomic) UIView *cardBackSubview;
+/**
+ A set containing the legal suits for a playing card (♠,♣,♥,♦)
+ */
+@property (readonly, nonatomic) NSSet *suitSet;
+/**
+ The text on the back of the playing card
+ */
+@property (strong, nonatomic) NSString *cardBackText;
+/**
+ The playing card's suit Font Family
+ */
+@property (weak, nonatomic) NSString *suitFontFamily;
+/**
+ The playing card's rank Font Family
+ */
+@property (weak, nonatomic) NSString *rankFontFamily;
+/**
+ The playing card's label color
+ */
+@property (weak, nonatomic) UIColor *labelColor;
+/**
+ The playing card's suit Font Size
+ */
+@property (nonatomic) NSInteger suitFontSize;
+/**
+ The playing card's rank Font Size
+ */
+@property (nonatomic) NSInteger rankFontSize;
+
+@end
+
 @implementation LCLPlayingCardView
 
 // Customizing the Card
@@ -46,7 +87,6 @@ NSInteger const CARD_HEIGHT = 112;
                       withText:nil
                      isVisible:isVisible];
 }
-
 - (instancetype)initWithFrame:(CGRect)frame
                      withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
@@ -206,7 +246,7 @@ NSInteger const CARD_HEIGHT = 112;
     _cardBackSubview = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
     _cardBackSubview.backgroundColor = color;
     _cardBackSubview.layer.borderColor = [UIColor whiteColor].CGColor;
-    _cardBackSubview.layer.borderWidth = 6.0f;
+    _cardBackSubview.layer.borderWidth = 5.0f;
     
     /* Set up back of card subview with an image:
      UIGraphicsBeginImageContext(_cardBackSubview.frame.size);

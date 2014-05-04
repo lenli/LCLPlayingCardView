@@ -59,6 +59,7 @@
                                                          withText:@"BR"
                                                         isVisible:NO];
     [self.view addSubview:card4];
+    
 }
 
 - (void)didReceiveMemoryWarning
