@@ -4,7 +4,6 @@ LCLPlayingCardView
 LCLPlayingCardView is a simple, but beautiful playing card implemented as a UIView.  
 Available as a [CocoaPod](http://cocoapods.org). See [CocoaDocs documentation](http://cocoadocs.org/docsets/LCLPlayingCardView/1.0.1/Classes/LCLPlayingCardView.html) for more details.
 
-
 ![image](LCLPlayingCardViewScreenshot.png)
 
 ###Features:
