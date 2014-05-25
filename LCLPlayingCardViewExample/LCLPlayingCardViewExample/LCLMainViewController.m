@@ -32,33 +32,61 @@
     
     [self.view addSubview:card0];
     
-    LCLPlayingCardView *card1 = [LCLPlayingCardView cardWithPoint:CGPointMake(60, 150)
-                                                        withRank:1
+    LCLPlayingCardView *card1 = [LCLPlayingCardView cardWithPoint:CGPointMake(80, 0)
+                                                     withCardSize:LCLPlayingCardMedium
+                                                         withRank:2
                                                         withSuit:LCLPlayingCardClub
                                                        isVisible:YES];
     [self.view addSubview:card1];
     
-    LCLPlayingCardView *card2 = [LCLPlayingCardView cardWithPoint:CGPointMake(160, 150)
-                                                        withRank:2
-                                                        withSuit:LCLPlayingCardDiamond
-                                                       withColor:[UIColor redColor]
-                                                        withText:@"RE"
-                                                       isVisible:NO];
+    LCLPlayingCardView *card2 = [LCLPlayingCardView cardWithPoint:CGPointMake(160, 0)
+                                                     withCardSize:LCLPlayingCardMedium
+                                                         withRank:11
+                                                         withSuit:LCLPlayingCardDiamond
+                                                        isVisible:YES];
     [self.view addSubview:card2];
     
-    LCLPlayingCardView *card3 = [LCLPlayingCardView cardWithFrame:CGRectMake(60, 300, 80, 112)
-                                                         withRank:3
+    LCLPlayingCardView *card3 = [LCLPlayingCardView cardWithPoint:CGPointMake(240, 0)
+                                                     withCardSize:LCLPlayingCardMedium
+                                                         withRank:10
                                                          withSuit:LCLPlayingCardHeart
                                                         isVisible:YES];
     [self.view addSubview:card3];
     
-    LCLPlayingCardView *card4 = [LCLPlayingCardView cardWithFrame:CGRectMake(160, 300, 80, 112)
-                                                         withRank:4
-                                                         withSuit:LCLPlayingCardSpade
-                                                        withColor:[UIColor brownColor]
-                                                         withText:@"BR"
-                                                        isVisible:NO];
+    LCLPlayingCardView *card4 = [LCLPlayingCardView cardWithPoint:CGPointMake(0, 120)
+                                                     withCardSize:LCLPlayingCardSmall
+                                                         withRank:1
+                                                         withSuit:LCLPlayingCardClub
+                                                        isVisible:YES];
     [self.view addSubview:card4];
+    
+    LCLPlayingCardView *card5 = [LCLPlayingCardView cardWithPoint:CGPointMake(80, 120)
+                                                     withCardSize:LCLPlayingCardSmall
+                                                         withRank:2
+                                                         withSuit:LCLPlayingCardDiamond
+                                                        isVisible:YES];
+    [self.view addSubview:card5];
+    
+    LCLPlayingCardView *card6 = [LCLPlayingCardView cardWithPoint:CGPointMake(160, 120)
+                                                     withCardSize:LCLPlayingCardSmall
+                                                         withRank:11
+                                                         withSuit:LCLPlayingCardHeart
+                                                        isVisible:YES];
+    [self.view addSubview:card6];
+    
+    LCLPlayingCardView *card7 = [LCLPlayingCardView cardWithPoint:CGPointMake(240, 120)
+                                                     withCardSize:LCLPlayingCardSmall
+                                                         withRank:10
+                                                         withSuit:LCLPlayingCardSpade
+                                                        isVisible:YES];
+    [self.view addSubview:card7];
+    
+    LCLPlayingCardView *card8 = [LCLPlayingCardView cardWithPoint:CGPointMake(80, 200)
+                                                     withCardSize:LCLPlayingCardLarge
+                                                         withRank:2
+                                                         withSuit:LCLPlayingCardSpade
+                                                        isVisible:YES];
+    [self.view addSubview:card8];
     
 }
 
@@ -67,16 +95,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -53,19 +53,17 @@
 // Customizing the Card
 NSString *const SUIT_FONT_FAMILY = @"TimesNewRomanPS-BoldMT";
 NSString *const RANK_FONT_FAMILY = @"HelveticaNeue-Light";
-NSInteger const RANK_FONT_SIZE = 24;
-NSInteger const SUIT_FONT_SIZE = 16;
 NSInteger const RED_COLOR = 0xe74c3c;
 NSInteger const DEFAULT_CARD_COLOR = 0x45A1CD;
-NSInteger const CARD_WIDTH = 80;
-NSInteger const CARD_HEIGHT = 112;
-
 
 #pragma mark - Initialization Methods
 
-- (instancetype)init
-{
-    return [self initWithFrame:CGRectMake(0, 0, CARD_WIDTH, CARD_HEIGHT)
+- (instancetype)init {
+    
+    return [self initWithFrame:[self frameFromPoint:CGPointMake(0, 0) withCardSize:LCLPlayingCardMedium]
+                  withCardSize:LCLPlayingCardMedium
+              withRankFontSize:[self rankFontSizeForCardSize:LCLPlayingCardMedium]
+              withSuitFontSize:[self suitFontSizeForCardSize:LCLPlayingCardMedium]
                       withRank:1
                       withSuit:LCLPlayingCardSpade
                      withColor:UIColorFromRGB(DEFAULT_CARD_COLOR)
@@ -74,39 +72,46 @@ NSInteger const CARD_HEIGHT = 112;
 }
 
 - (instancetype)initWithPoint:(CGPoint)point
+                 withCardSize:(LCLPlayingCardSize)enumCardSize
                      withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
                     withColor:(UIColor *)color
                      withText:(NSString *)text
-                    isVisible:(BOOL)isVisible
-{
-    return [self initWithFrame:CGRectMake(point.x, point.y, CARD_WIDTH, CARD_HEIGHT)
+                    isVisible:(BOOL)isVisible {
+    
+    return [self initWithFrame:[self frameFromPoint:CGPointMake(point.x, point.y) withCardSize:enumCardSize]
+                  withCardSize:enumCardSize
+              withRankFontSize:[self rankFontSizeForCardSize:enumCardSize]
+              withSuitFontSize:[self suitFontSizeForCardSize:enumCardSize]
                       withRank:rank
                       withSuit:suit
                      withColor:color
                       withText:nil
                      isVisible:isVisible];
 }
+
 - (instancetype)initWithFrame:(CGRect)frame
+                 withCardSize:(LCLPlayingCardSize)enumCardSize
+             withRankFontSize:(NSInteger)rankFontSize
+             withSuitFontSize:(NSInteger)suitFontSize
                      withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
                     withColor:(UIColor *)color
                      withText:(NSString *)text
-                    isVisible:(BOOL)isVisible
-{
+                    isVisible:(BOOL)isVisible {
+    
     self = [super initWithFrame:frame];
     if (self) {
-        
         // Initialize Card
         _suit = [self getSuitStringFromLCLPlayingCardSuit:suit];
         _rank = [self convertToCardRankFromNumber:rank];
         _isVisible = isVisible;
         
         // Customize Card Label properties
-        _suitFontFamily = SUIT_FONT_FAMILY;
         _rankFontFamily = RANK_FONT_FAMILY;
-        _rankFontSize = RANK_FONT_SIZE;
-        _suitFontSize = SUIT_FONT_SIZE;
+        _suitFontFamily = SUIT_FONT_FAMILY;
+        _rankFontSize = rankFontSize;
+        _suitFontSize = suitFontSize;
         
         NSDictionary *fontColorDictionary = @{@"♠":[UIColor blackColor],
                                               @"♣":[UIColor blackColor],
@@ -120,7 +125,7 @@ NSInteger const CARD_HEIGHT = 112;
         
         UIColor *backColor = (color) ? color : UIColorFromRGB(DEFAULT_CARD_COLOR);
         [self createBackSubviewWithColor:backColor];
-        [self createLabelsWithText:text];
+        [self createLabelsWithText:text withCardSize:enumCardSize];
         isVisible ? [self addSubview:_cardFrontSubview] : [self addSubview:_cardBackSubview];
     }
     return self;
@@ -128,69 +133,42 @@ NSInteger const CARD_HEIGHT = 112;
 
 
 + (instancetype)cardWithPoint:(CGPoint)point
+                 withCardSize:(LCLPlayingCardSize)enumCardSize
                      withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
-                    isVisible:(BOOL)isVisible
-{
+                    isVisible:(BOOL)isVisible {
+    
     return [[self alloc] initWithPoint:point
+                          withCardSize:enumCardSize
                               withRank:rank
                               withSuit:suit
                              withColor:nil
                               withText:nil
                              isVisible:isVisible];
 }
-
-
-+ (instancetype)cardWithFrame:(CGRect)frame
-                     withRank:(NSInteger)rank
-                     withSuit:(LCLPlayingCardSuit)suit
-                    isVisible:(BOOL)isVisible
-{
-    return [[self alloc] initWithFrame:frame
-                              withRank:rank
-                              withSuit:suit
-                             withColor:nil
-                              withText:nil
-                             isVisible:isVisible];
-}
-
 
 
 + (instancetype)cardWithPoint:(CGPoint)point
+                 withCardSize:(LCLPlayingCardSize)enumCardSize
                      withRank:(NSInteger)rank
                      withSuit:(LCLPlayingCardSuit)suit
                     withColor:(UIColor *)color
                      withText:(NSString *)text
-                    isVisible:(BOOL)isVisible 
-{
+                    isVisible:(BOOL)isVisible  {
+    
     return [[self alloc] initWithPoint:point
+                          withCardSize:enumCardSize
                               withRank:rank
                               withSuit:suit
                              withColor:color
                               withText:nil
                              isVisible:isVisible];
 }
-
-+ (instancetype)cardWithFrame:(CGRect)frame
-                     withRank:(NSInteger)rank
-                     withSuit:(LCLPlayingCardSuit)suit
-                    withColor:(UIColor *)color
-                     withText:(NSString *)text
-                    isVisible:(BOOL)isVisible
-{
-    return [[self alloc] initWithFrame:frame
-                              withRank:rank
-                              withSuit:suit
-                             withColor:color
-                              withText:nil
-                             isVisible:isVisible];
-}
-
 
 #pragma mark - Card Methods
 
-- (void)flipCard
-{
+- (void)flipCard {
+    
     UIView *fromCardView, *toCardView;
     
     if (self.isVisible) {
@@ -213,13 +191,13 @@ NSInteger const CARD_HEIGHT = 112;
     [fromCardView removeFromSuperview];
 }
 
-- (void)tiltCardWithDegrees:(float)degrees
-{
+- (void)tiltCardWithDegrees:(float)degrees {
+    
     [self setTransform:CGAffineTransformMakeRotation(degreesToRadian(degrees))];
 }
 
-- (void)tiltCardRandomly
-{
+- (void)tiltCardRandomly {
+    
     srand48(time(0));
     double tilt = (drand48()*10)-5;
     if (tilt < 0) {
@@ -231,8 +209,69 @@ NSInteger const CARD_HEIGHT = 112;
 
 #pragma mark - Initialization Helper Methods
 
-- (void)setupCardWrapperView
-{
+- (CGRect)frameFromPoint:(CGPoint)point
+            withCardSize:(LCLPlayingCardSize)enumCardSize {
+    
+    CGRect cardFrame;
+    switch (enumCardSize) {
+        case 1:
+            cardFrame = CGRectMake(point.x, point.y, 40, 56);
+            break;
+        case 2:
+            cardFrame = CGRectMake(point.x, point.y, 80, 112);
+            break;
+        case 3:
+            cardFrame = CGRectMake(point.x, point.y, 160, 224);
+            break;
+        default:
+            cardFrame = CGRectMake(point.x, point.y, 80, 112);
+            break;
+    }
+    return cardFrame;
+}
+
+- (NSInteger)rankFontSizeForCardSize:(LCLPlayingCardSize)enumCardSize {
+    
+    NSInteger rankFontSize;
+    switch (enumCardSize) {
+        case 1:
+            rankFontSize = 12;
+            break;
+        case 2:
+            rankFontSize = 24;
+            break;
+        case 3:
+            rankFontSize = 36;
+            break;
+        default:
+            rankFontSize = 24;
+            break;
+    }
+    return rankFontSize;
+}
+
+- (NSInteger)suitFontSizeForCardSize:(LCLPlayingCardSize)enumCardSize {
+    
+    NSInteger suitFontSize;
+    switch (enumCardSize) {
+        case 1:
+            suitFontSize = 12;
+            break;
+        case 2:
+            suitFontSize = 16;
+            break;
+        case 3:
+            suitFontSize = 36;
+            break;
+        default:
+            suitFontSize = 16;
+            break;
+    }
+    return suitFontSize;
+}
+
+- (void)setupCardWrapperView {
+    
     // Set up card
     self.layer.cornerRadius = 5.0;
     self.layer.masksToBounds = YES;
@@ -240,8 +279,8 @@ NSInteger const CARD_HEIGHT = 112;
     self.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)createBackSubviewWithColor:(UIColor *)color
-{
+- (void)createBackSubviewWithColor:(UIColor *)color {
+    
     // Set up back of card subview with solid color
     _cardBackSubview = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
     _cardBackSubview.backgroundColor = color;
@@ -258,17 +297,54 @@ NSInteger const CARD_HEIGHT = 112;
 }
 
 - (void)createLabelsWithText:(NSString *)cardBackText
-{
+                withCardSize:(LCLPlayingCardSize)enumCardSize {
+    
     // Set up front of card subview
     _cardFrontSubview = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
     NSInteger cardHeight = _cardFrontSubview.bounds.size.height;
     NSInteger cardWidth = _cardFrontSubview.bounds.size.width;
-    NSInteger cardLabelWidth = 30;
-    NSInteger cardLabelHeight = 20;
     
-    NSInteger xOffset = 0;
-    NSInteger yOffset = 8;
-    NSInteger yPadding = 20;
+    NSInteger cardLabelWidth;
+    NSInteger cardLabelHeight;
+    NSInteger xOffset;
+    NSInteger yOffset;
+    NSInteger yPadding;
+    NSInteger centerSuitSize;
+    
+    switch (enumCardSize) {
+        case 1:
+            cardLabelWidth = 15;
+            cardLabelHeight = 10;
+            xOffset = 0;
+            yOffset = 4;
+            yPadding = 10;
+            centerSuitSize = _suitFontSize*2;
+            break;
+        case 2:
+            cardLabelWidth = 30;
+            cardLabelHeight = 20;
+            xOffset = 0;
+            yOffset = 8;
+            yPadding = 20;
+            centerSuitSize = _suitFontSize*3;
+            break;
+        case 3:
+            cardLabelWidth = 50;
+            cardLabelHeight = 40;
+            xOffset = 0;
+            yOffset = 8;
+            yPadding = 32;
+            centerSuitSize = _suitFontSize*3;
+            break;
+        default:
+            cardLabelWidth = 30;
+            cardLabelHeight = 20;
+            xOffset = 0;
+            yOffset = 8;
+            yPadding = 20;
+            centerSuitSize = _suitFontSize*3;
+            break;
+    }
     
     CGRect topRankFrame = CGRectMake(xOffset, yOffset, cardLabelWidth, cardLabelHeight);
     
@@ -312,13 +388,13 @@ NSInteger const CARD_HEIGHT = 112;
                           withSubview:self.cardFrontSubview];
     
     CGRect cardCenterFrame = CGRectMake(_cardFrontSubview.center.x-cardLabelWidth,
-                                        _cardFrontSubview.center.y-cardLabelHeight,
+                                        _cardFrontSubview.center.y-(cardLabelHeight*1.1),
                                         cardLabelWidth*2,
                                         cardLabelHeight*2);
     
     [self createLabelForCardWithFrame:cardCenterFrame
                              withText:self.suit
-                         withFontSize:self.suitFontSize*3
+                         withFontSize:centerSuitSize
                    withTransformation:0
                           withSubview:self.cardFrontSubview];
     
@@ -335,8 +411,7 @@ NSInteger const CARD_HEIGHT = 112;
                            withText:(NSString *)text
                        withFontSize:(NSInteger)fontSize
                  withTransformation:(CGFloat)angleAsRadians
-                        withSubview:(UIView *)subview
-{
+                        withSubview:(UIView *)subview {
     
     UILabel *newLabel = [[UILabel alloc] initWithFrame:frame];
     newLabel.text = text;
@@ -359,8 +434,8 @@ NSInteger const CARD_HEIGHT = 112;
     
 }
 
-- (NSString *)getSuitStringFromLCLPlayingCardSuit:(LCLPlayingCardSuit)enumSuit
-{
+- (NSString *)getSuitStringFromLCLPlayingCardSuit:(LCLPlayingCardSuit)enumSuit {
+    
     NSString *suitString;
     switch (enumSuit) {
         case 1:
@@ -379,8 +454,8 @@ NSInteger const CARD_HEIGHT = 112;
     return suitString;
 }
 
-- (NSString *)convertToCardRankFromNumber:(NSInteger)cardNumber
-{
+- (NSString *)convertToCardRankFromNumber:(NSInteger)cardNumber {
+    
     NSString *rankString;
     switch (cardNumber) {
         case 1:
@@ -402,13 +477,13 @@ NSInteger const CARD_HEIGHT = 112;
     return rankString;
 }
 
-- (NSString *)shortenString:(NSString *)stringToShorten ToLength:(NSInteger)stringLength
-{
+- (NSString *)shortenString:(NSString *)stringToShorten ToLength:(NSInteger)stringLength {
+    
     return [stringToShorten substringToIndex: MIN(stringLength, [stringToShorten length])];
 }
 
-- (NSString *)description
-{
+- (NSString *)description {
+    
     return [NSString stringWithFormat:@"%@%@: %@", self.rank, self.suit, NSStringFromCGRect([super convertRect:super.frame fromView:self])];
 }
 
