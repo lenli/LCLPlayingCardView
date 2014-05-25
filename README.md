@@ -11,7 +11,9 @@ Available as a [CocoaPod](http://cocoapods.org). See [CocoaDocs documentation](h
 - Lightweight:  No images for the cards -- 100% code.
 - Flexible: Since the cards are code, you can tweak anything about them to fit your needs.
 - Realistic Feel:  The included customizations make the cards feel more real.
+- Three pre-configured Sizes: Small, Medium and Large
 
+![image](LCLPlayingCardViewExampleScreenshot.png)
 
 ##Getting Started
 ###Install with CocoaPods
@@ -19,7 +21,7 @@ Available as a [CocoaPod](http://cocoapods.org). See [CocoaDocs documentation](h
 [CocoaPods](http://cocoapods.org/) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries in your projects.  In your Podfile, add the following:
 ```ios
 platform :ios, '7.0'
-pod "LCLPlayingCardView", "~> 1.0"
+pod "LCLPlayingCardView", "~> 2.0"
 ```
 
 ###Or Manually Import Headers
@@ -31,38 +33,34 @@ pod "LCLPlayingCardView", "~> 1.0"
 ##Usage
 ###Example Usage
 
-Initialization with Point (default width and height):
+Initialize Small Card:
 ```ios
-LCLPlayingCardView *card1 = [LCLPlayingCardView cardWithPoint:CGPointMake(60, 100)
-                                                    withRank:1
-                                                    withSuit:LCLPlayingCardClub
-                                                   isVisible:YES];
-[self.view addSubview:card1];
-
-LCLPlayingCardView *card2 = [LCLPlayingCardView cardWithPoint:CGPointMake(160, 100)
-                                                    withRank:2
-                                                    withSuit:LCLPlayingCardDiamond
-                                                   withColor:[UIColor redColor]
-                                                    withText:@"RE"
-                                                   isVisible:NO];
-[self.view addSubview:card2];
+    LCLPlayingCardView *card1 = [LCLPlayingCardView cardWithPoint:CGPointMake(80, 120)
+                                                 withCardSize:LCLPlayingCardSmall
+                                                     withRank:2
+                                                     withSuit:LCLPlayingCardDiamond
+                                                    isVisible:YES];
+    [self.view addSubview:card1];
 ```
 
-Initialization with Frame (custom width and height):
+Initialize Medium Card:
 ```ios
-LCLPlayingCardView *card3 = [LCLPlayingCardView cardWithFrame:CGRectMake(60, 250, 80, 112)
-                                                     withRank:3
-                                                     withSuit:LCLPlayingCardHeart
-                                                    isVisible:YES];
-[self.view addSubview:card3];
+    LCLPlayingCardView *card2 = [LCLPlayingCardView cardWithPoint:CGPointMake(80, 0)
+                                                 withCardSize:LCLPlayingCardMedium
+                                                     withRank:11
+                                                    withSuit:LCLPlayingCardClub
+                                                   isVisible:YES];
+    [self.view addSubview:card2];
+```
 
-LCLPlayingCardView *card4 = [LCLPlayingCardView cardWithFrame:CGRectMake(160, 250, 80, 112)
-                                                     withRank:4
-                                                     withSuit:LCLPlayingCardSpade
-                                                    withColor:[UIColor brownColor]
-                                                     withText:@"BR"
-                                                    isVisible:NO];
-[self.view addSubview:card4];
+Initialize Large Card:
+```ios
+    LCLPlayingCardView *card3 = [LCLPlayingCardView cardWithPoint:CGPointMake(80, 200)
+                                                     withCardSize:LCLPlayingCardLarge
+                                                         withRank:10
+                                                         withSuit:LCLPlayingCardSpade
+                                                        isVisible:YES];
+    [self.view addSubview:card3];
 ```
 
 ####Methods
@@ -79,14 +77,20 @@ If you like this or use this, please star/fork/watch/tweet the repo, raise issue
 
 
 ##Change Log
+####v2.0.0
+- Add LCLPlayingCardSize enum for LCLPlayingCardViewSmall, LCLPlayingCardViewMedium and LCLPlayingCardViewLarge
+- Tweak label sizes for Small and Large cards based on LCLPlayingCardSize
+- Update example project with examples in each size
+- Make most of the properties private
+- Make suit & rank properties readonly
+- Remove font size, card width and card height constants
+- Deprecate cardwithFrame initialization
+
 ####v1.0.2
 - Add example project
 - Add LCLPlayingCardSuit enum
 - Allow initialization of cardback color and text
 
 ##Future Improvements
-- Provide animation method
-- Provide presets for different sized cards (small, medium, large)
-- Allow for card fonts to automatically scale just by specifying card width and height
 - Externally manage back of card image vs solid color
 
