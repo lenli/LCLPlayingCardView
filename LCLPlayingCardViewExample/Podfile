@@ -1,2 +1,2 @@
 platform :ios, '7.0'
-pod "LCLPlayingCardView", "~> 1.0"
+pod "LCLPlayingCardView", "~> 2.0"

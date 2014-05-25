@@ -36,20 +36,20 @@ pod "LCLPlayingCardView", "~> 2.0"
 Initialize Small Card:
 ```ios
     LCLPlayingCardView *card1 = [LCLPlayingCardView cardWithPoint:CGPointMake(80, 120)
-                                                 withCardSize:LCLPlayingCardSmall
-                                                     withRank:2
-                                                     withSuit:LCLPlayingCardDiamond
-                                                    isVisible:YES];
+                                                     withCardSize:LCLPlayingCardSmall
+                                                         withRank:2
+                                                         withSuit:LCLPlayingCardDiamond
+                                                        isVisible:YES];
     [self.view addSubview:card1];
 ```
 
 Initialize Medium Card:
 ```ios
     LCLPlayingCardView *card2 = [LCLPlayingCardView cardWithPoint:CGPointMake(80, 0)
-                                                 withCardSize:LCLPlayingCardMedium
-                                                     withRank:11
-                                                    withSuit:LCLPlayingCardClub
-                                                   isVisible:YES];
+                                                     withCardSize:LCLPlayingCardMedium
+                                                         withRank:11
+                                                         withSuit:LCLPlayingCardClub
+                                                        isVisible:YES];
     [self.view addSubview:card2];
 ```
 
@@ -77,7 +77,7 @@ If you like this or use this, please star/fork/watch/tweet the repo, raise issue
 
 
 ##Change Log
-####v2.0.0
+####v2.0.1
 - Add LCLPlayingCardSize enum for LCLPlayingCardViewSmall, LCLPlayingCardViewMedium and LCLPlayingCardViewLarge
 - Tweak label sizes for Small and Large cards based on LCLPlayingCardSize
 - Update example project with examples in each size
