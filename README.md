@@ -13,8 +13,6 @@ Available as a [CocoaPod](http://cocoapods.org). See [CocoaDocs documentation](h
 - Realistic Feel:  The included customizations make the cards feel more real.
 - Three pre-configured Sizes: Small, Medium and Large
 
-![image](LCLPlayingCardViewExampleScreenshot.png)
-
 ##Getting Started
 ###Install with CocoaPods
 
@@ -32,6 +30,8 @@ pod "LCLPlayingCardView", "~> 2.0"
 
 ##Usage
 ###Example Usage
+
+![image](LCLPlayingCardViewExampleScreenshot.png)
 
 Initialize Small Card:
 ```ios
