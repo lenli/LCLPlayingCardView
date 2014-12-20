@@ -25,16 +25,16 @@ extern NSInteger const CARD_WIDTH;
 extern NSInteger const CARD_HEIGHT;
 
 typedef NS_ENUM(NSInteger, LCLPlayingCardSuit) {
-    LCLPlayingCardClub = 1,
-    LCLPlayingCardDiamond = 2,
-    LCLPlayingCardHeart = 3,
-    LCLPlayingCardSpade = 4
+    LCLPlayingCardClub,
+    LCLPlayingCardDiamond,
+    LCLPlayingCardHeart,
+    LCLPlayingCardSpade
 };
 
 typedef NS_ENUM(NSInteger, LCLPlayingCardSize) {
-    LCLPlayingCardSmall = 1,
-    LCLPlayingCardMedium = 2,
-    LCLPlayingCardLarge = 3
+    LCLPlayingCardSmall,
+    LCLPlayingCardMedium,
+    LCLPlayingCardLarge
 };
 
 

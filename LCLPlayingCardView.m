@@ -214,13 +214,13 @@ NSInteger const DEFAULT_CARD_COLOR = 0x45A1CD;
     
     CGRect cardFrame;
     switch (enumCardSize) {
-        case 1:
+        case LCLPlayingCardSmall:
             cardFrame = CGRectMake(point.x, point.y, 40, 56);
             break;
-        case 2:
+        case LCLPlayingCardMedium:
             cardFrame = CGRectMake(point.x, point.y, 80, 112);
             break;
-        case 3:
+        case LCLPlayingCardLarge:
             cardFrame = CGRectMake(point.x, point.y, 160, 224);
             break;
         default:
@@ -234,13 +234,13 @@ NSInteger const DEFAULT_CARD_COLOR = 0x45A1CD;
     
     NSInteger rankFontSize;
     switch (enumCardSize) {
-        case 1:
+        case LCLPlayingCardSmall:
             rankFontSize = 12;
             break;
-        case 2:
+        case LCLPlayingCardMedium:
             rankFontSize = 24;
             break;
-        case 3:
+        case LCLPlayingCardLarge:
             rankFontSize = 36;
             break;
         default:
@@ -254,13 +254,13 @@ NSInteger const DEFAULT_CARD_COLOR = 0x45A1CD;
     
     NSInteger suitFontSize;
     switch (enumCardSize) {
-        case 1:
+        case LCLPlayingCardSmall:
             suitFontSize = 12;
             break;
-        case 2:
+        case LCLPlayingCardMedium:
             suitFontSize = 16;
             break;
-        case 3:
+        case LCLPlayingCardLarge:
             suitFontSize = 36;
             break;
         default:
@@ -312,7 +312,7 @@ NSInteger const DEFAULT_CARD_COLOR = 0x45A1CD;
     NSInteger centerSuitSize;
     
     switch (enumCardSize) {
-        case 1:
+        case LCLPlayingCardSmall:
             cardLabelWidth = 15;
             cardLabelHeight = 10;
             xOffset = 0;
@@ -320,7 +320,7 @@ NSInteger const DEFAULT_CARD_COLOR = 0x45A1CD;
             yPadding = 10;
             centerSuitSize = _suitFontSize*2;
             break;
-        case 2:
+        case LCLPlayingCardMedium:
             cardLabelWidth = 30;
             cardLabelHeight = 20;
             xOffset = 0;
@@ -328,7 +328,7 @@ NSInteger const DEFAULT_CARD_COLOR = 0x45A1CD;
             yPadding = 20;
             centerSuitSize = _suitFontSize*3;
             break;
-        case 3:
+        case LCLPlayingCardLarge:
             cardLabelWidth = 50;
             cardLabelHeight = 40;
             xOffset = 0;
@@ -438,16 +438,16 @@ NSInteger const DEFAULT_CARD_COLOR = 0x45A1CD;
     
     NSString *suitString;
     switch (enumSuit) {
-        case 1:
+        case LCLPlayingCardClub:
             suitString = @"♣";
             break;
-        case 2:
+        case LCLPlayingCardDiamond:
             suitString = @"♦";
             break;
-        case 3:
+        case LCLPlayingCardHeart:
             suitString = @"♥";
             break;
-        default:
+        case LCLPlayingCardSpade:
             suitString = @"♠";
             break;
     }
@@ -471,7 +471,7 @@ NSInteger const DEFAULT_CARD_COLOR = 0x45A1CD;
             rankString = @"K";
             break;
         default:
-            rankString = [NSString stringWithFormat:@"%d",cardNumber];
+            rankString = [NSString stringWithFormat:@"%ld",(long)cardNumber];
             break;
     }
     return rankString;
