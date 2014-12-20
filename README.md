@@ -77,6 +77,10 @@ If you like this or use this, please star/fork/watch/tweet the repo, raise issue
 
 
 ##Change Log
+####v2.0.2
+- Clean up enum switches
+- Add cocoapods source spec to top of Podfile
+
 ####v2.0.1
 - Add LCLPlayingCardSize enum for LCLPlayingCardViewSmall, LCLPlayingCardViewMedium and LCLPlayingCardViewLarge
 - Tweak label sizes for Small and Large cards based on LCLPlayingCardSize
