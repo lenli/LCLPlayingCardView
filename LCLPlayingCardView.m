@@ -121,7 +121,7 @@ NSInteger const DEFAULT_CARD_COLOR = 0x45A1CD;
         _labelColor = fontColorDictionary[_suit];
         _suitSet = [NSSet setWithArray:[fontColorDictionary allKeys]];
         
-        [self setupCardWrapperView];
+        [self setupCardWrapperViewForCardSize:enumCardSize];
         
         UIColor *backColor = (color) ? color : UIColorFromRGB(DEFAULT_CARD_COLOR);
         [self createBackSubviewWithColor:backColor];
@@ -270,10 +270,24 @@ NSInteger const DEFAULT_CARD_COLOR = 0x45A1CD;
     return suitFontSize;
 }
 
-- (void)setupCardWrapperView {
+- (void)setupCardWrapperViewForCardSize:(LCLPlayingCardSize)enumCardSize {
     
     // Set up card
-    self.layer.cornerRadius = 5.0;
+    switch (enumCardSize) {
+        case LCLPlayingCardSmall:
+            self.layer.cornerRadius = 5.0;
+            break;
+        case LCLPlayingCardMedium:
+            self.layer.cornerRadius = 10.0;
+            break;
+        case LCLPlayingCardLarge:
+            self.layer.cornerRadius = 15.0;
+            break;
+        default:
+            self.layer.cornerRadius = 10.0;
+            break;
+    }
+    
     self.layer.masksToBounds = YES;
     self.layer.borderWidth = 0;
     self.backgroundColor = [UIColor whiteColor];
